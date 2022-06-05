@@ -1,0 +1,91 @@
+﻿@model ShopTC.Models.ThuCung
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ThuCung</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenTC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenTC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GiaTC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaTC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhAnhMH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HinhAnhMH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgaySinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgaySinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiThuCung.TenLoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiThuCung.TenLoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NHACC.TenCC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NHACC.TenCC)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaTC }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

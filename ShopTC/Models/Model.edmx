@@ -1,0 +1,522 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QLBHTCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'QLBHTC.dbo.CTHoaDon' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CTHoaDon">
+          <Key>
+            <PropertyRef Name="MaHD" />
+            <PropertyRef Name="MaTC" />
+            <PropertyRef Name="SoLuong" />
+            <PropertyRef Name="DonGia" />
+          </Key>
+          <Property Name="MaHD" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaTC" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+          <Property Name="DonGia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HoaDon">
+          <Key>
+            <PropertyRef Name="MaHD" />
+          </Key>
+          <Property Name="MaHD" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaUser" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NgayTao" Type="date" Nullable="false" />
+          <Property Name="TongTien" Type="int" Nullable="false" />
+          <Property Name="TenNguoiShip" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DiaChiShip" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SDTShip" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EmailShip" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoaiThuCung">
+          <Key>
+            <PropertyRef Name="MaLoai" />
+          </Key>
+          <Property Name="MaLoai" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenLoai" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MaGiamGia">
+          <Key>
+            <PropertyRef Name="MaCode" />
+          </Key>
+          <Property Name="MaCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="GiaTriMa" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+          <Property Name="GiamGia" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NHACC">
+          <Key>
+            <PropertyRef Name="MaCC" />
+          </Key>
+          <Property Name="MaCC" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenCC" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DiaChiCC" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EmailCC" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SDTCC" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="THAMSO">
+          <Key>
+            <PropertyRef Name="MaTS" />
+          </Key>
+          <Property Name="MaTS" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenTS" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DonViTinh" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="GiaTri" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TinhTong" Type="bit" />
+        </EntityType>
+        <EntityType Name="ThuCung">
+          <Key>
+            <PropertyRef Name="MaTC" />
+          </Key>
+          <Property Name="MaTC" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenTC" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="GiaTC" Type="int" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+          <Property Name="GT" Type="bit" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="HinhAnhMH" Type="varchar" MaxLength="200" />
+          <Property Name="MaLoai" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaCC" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NgaySinh" Type="date" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="MaUser" />
+          </Key>
+          <Property Name="MaUser" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="HoUser" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="TenUser" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="GioiTinh" Type="bit" />
+          <Property Name="NgaySinh" Type="date" Nullable="false" />
+          <Property Name="SDT" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="20" />
+          <Property Name="MatKhau" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Token" Type="varchar" MaxLength="50" />
+          <Property Name="admin" Type="bit" />
+        </EntityType>
+        <Association Name="FK__CTHoaDon__MaHD__300424B4">
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="1" />
+          <End Role="CTHoaDon" Type="Self.CTHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoaDon">
+              <PropertyRef Name="MaHD" />
+            </Principal>
+            <Dependent Role="CTHoaDon">
+              <PropertyRef Name="MaHD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CTHoaDon__MaTC__30F848ED">
+          <End Role="ThuCung" Type="Self.ThuCung" Multiplicity="1" />
+          <End Role="CTHoaDon" Type="Self.CTHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThuCung">
+              <PropertyRef Name="MaTC" />
+            </Principal>
+            <Dependent Role="CTHoaDon">
+              <PropertyRef Name="MaTC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HoaDon__MaUser__2E1BDC42">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="MaUser" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="MaUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ThuCung__MaCC__29572725">
+          <End Role="NHACC" Type="Self.NHACC" Multiplicity="1" />
+          <End Role="ThuCung" Type="Self.ThuCung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHACC">
+              <PropertyRef Name="MaCC" />
+            </Principal>
+            <Dependent Role="ThuCung">
+              <PropertyRef Name="MaCC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ThuCung__MaLoai__286302EC">
+          <End Role="LoaiThuCung" Type="Self.LoaiThuCung" Multiplicity="1" />
+          <End Role="ThuCung" Type="Self.ThuCung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiThuCung">
+              <PropertyRef Name="MaLoai" />
+            </Principal>
+            <Dependent Role="ThuCung">
+              <PropertyRef Name="MaLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLBHTCModelStoreContainer">
+          <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiThuCung" EntityType="Self.LoaiThuCung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaGiamGia" EntityType="Self.MaGiamGia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHACC" EntityType="Self.NHACC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THAMSO" EntityType="Self.THAMSO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThuCung" EntityType="Self.ThuCung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CTHoaDon" EntityType="Self.CTHoaDon" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CTHoaDon].[MaHD] AS [MaHD], 
+    [CTHoaDon].[MaTC] AS [MaTC], 
+    [CTHoaDon].[SoLuong] AS [SoLuong], 
+    [CTHoaDon].[DonGia] AS [DonGia]
+    FROM [dbo].[CTHoaDon] AS [CTHoaDon]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__CTHoaDon__MaHD__300424B4" Association="Self.FK__CTHoaDon__MaHD__300424B4">
+            <End Role="HoaDon" EntitySet="HoaDon" />
+            <End Role="CTHoaDon" EntitySet="CTHoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CTHoaDon__MaTC__30F848ED" Association="Self.FK__CTHoaDon__MaTC__30F848ED">
+            <End Role="ThuCung" EntitySet="ThuCung" />
+            <End Role="CTHoaDon" EntitySet="CTHoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HoaDon__MaUser__2E1BDC42" Association="Self.FK__HoaDon__MaUser__2E1BDC42">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="HoaDon" EntitySet="HoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ThuCung__MaCC__29572725" Association="Self.FK__ThuCung__MaCC__29572725">
+            <End Role="NHACC" EntitySet="NHACC" />
+            <End Role="ThuCung" EntitySet="ThuCung" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ThuCung__MaLoai__286302EC" Association="Self.FK__ThuCung__MaLoai__286302EC">
+            <End Role="LoaiThuCung" EntitySet="LoaiThuCung" />
+            <End Role="ThuCung" EntitySet="ThuCung" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLBHTCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="HoaDon">
+          <Key>
+            <PropertyRef Name="MaHD" />
+          </Key>
+          <Property Name="MaHD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaUser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TongTien" Type="Int32" Nullable="false" />
+          <Property Name="TenNguoiShip" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DiaChiShip" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SDTShip" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailShip" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CTHoaDon" Relationship="Self.FK__CTHoaDon__MaHD__300424B4" FromRole="HoaDon" ToRole="CTHoaDon" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__HoaDon__MaUser__2E1BDC42" FromRole="HoaDon" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="LoaiThuCung">
+          <Key>
+            <PropertyRef Name="MaLoai" />
+          </Key>
+          <Property Name="MaLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenLoai" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ThuCung" Relationship="Self.FK__ThuCung__MaLoai__286302EC" FromRole="LoaiThuCung" ToRole="ThuCung" />
+        </EntityType>
+        <EntityType Name="MaGiamGia">
+          <Key>
+            <PropertyRef Name="MaCode" />
+          </Key>
+          <Property Name="MaCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GiaTriMa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <Property Name="GiamGia" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NHACC">
+          <Key>
+            <PropertyRef Name="MaCC" />
+          </Key>
+          <Property Name="MaCC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenCC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DiaChiCC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailCC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SDTCC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ThuCung" Relationship="Self.FK__ThuCung__MaCC__29572725" FromRole="NHACC" ToRole="ThuCung" />
+        </EntityType>
+        <EntityType Name="THAMSO">
+          <Key>
+            <PropertyRef Name="MaTS" />
+          </Key>
+          <Property Name="MaTS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenTS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DonViTinh" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GiaTri" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TinhTong" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ThuCung">
+          <Key>
+            <PropertyRef Name="MaTC" />
+          </Key>
+          <Property Name="MaTC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenTC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GiaTC" Type="Int32" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <Property Name="GT" Type="Boolean" />
+          <Property Name="MoTa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HinhAnhMH" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MaLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaCC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="LoaiThuCung" Relationship="Self.FK__ThuCung__MaLoai__286302EC" FromRole="ThuCung" ToRole="LoaiThuCung" />
+          <NavigationProperty Name="NHACC" Relationship="Self.FK__ThuCung__MaCC__29572725" FromRole="ThuCung" ToRole="NHACC" />
+          <NavigationProperty Name="CTHoaDon" Relationship="Self.FK__CTHoaDon__MaTC__30F848ED" FromRole="ThuCung" ToRole="CTHoaDon" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="MaUser" />
+          </Key>
+          <Property Name="MaUser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HoUser" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TenUser" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GioiTinh" Type="Boolean" />
+          <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhau" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="admin" Type="Boolean" />
+          <NavigationProperty Name="HoaDon" Relationship="Self.FK__HoaDon__MaUser__2E1BDC42" FromRole="Users" ToRole="HoaDon" />
+        </EntityType>
+        <EntityType Name="CTHoaDon">
+          <Key>
+            <PropertyRef Name="MaHD" />
+            <PropertyRef Name="MaTC" />
+            <PropertyRef Name="SoLuong" />
+            <PropertyRef Name="DonGia" />
+          </Key>
+          <Property Name="MaHD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaTC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <Property Name="DonGia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HoaDon" Relationship="Self.FK__CTHoaDon__MaHD__300424B4" FromRole="CTHoaDon" ToRole="HoaDon" />
+          <NavigationProperty Name="ThuCung" Relationship="Self.FK__CTHoaDon__MaTC__30F848ED" FromRole="CTHoaDon" ToRole="ThuCung" />
+        </EntityType>
+        <Association Name="FK__CTHoaDon__MaHD__300424B4">
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="1" />
+          <End Role="CTHoaDon" Type="Self.CTHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HoaDon">
+              <PropertyRef Name="MaHD" />
+            </Principal>
+            <Dependent Role="CTHoaDon">
+              <PropertyRef Name="MaHD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HoaDon__MaUser__2E1BDC42">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="MaUser" />
+            </Principal>
+            <Dependent Role="HoaDon">
+              <PropertyRef Name="MaUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ThuCung__MaLoai__286302EC">
+          <End Role="LoaiThuCung" Type="Self.LoaiThuCung" Multiplicity="1" />
+          <End Role="ThuCung" Type="Self.ThuCung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiThuCung">
+              <PropertyRef Name="MaLoai" />
+            </Principal>
+            <Dependent Role="ThuCung">
+              <PropertyRef Name="MaLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ThuCung__MaCC__29572725">
+          <End Role="NHACC" Type="Self.NHACC" Multiplicity="1" />
+          <End Role="ThuCung" Type="Self.ThuCung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHACC">
+              <PropertyRef Name="MaCC" />
+            </Principal>
+            <Dependent Role="ThuCung">
+              <PropertyRef Name="MaCC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CTHoaDon__MaTC__30F848ED">
+          <End Role="ThuCung" Type="Self.ThuCung" Multiplicity="1" />
+          <End Role="CTHoaDon" Type="Self.CTHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThuCung">
+              <PropertyRef Name="MaTC" />
+            </Principal>
+            <Dependent Role="CTHoaDon">
+              <PropertyRef Name="MaTC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLBHTCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HoaDon" EntityType="Self.HoaDon" />
+          <EntitySet Name="LoaiThuCung" EntityType="Self.LoaiThuCung" />
+          <EntitySet Name="MaGiamGia" EntityType="Self.MaGiamGia" />
+          <EntitySet Name="NHACC" EntityType="Self.NHACC" />
+          <EntitySet Name="THAMSO" EntityType="Self.THAMSO" />
+          <EntitySet Name="ThuCung" EntityType="Self.ThuCung" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="CTHoaDon" EntityType="Self.CTHoaDon" />
+          <AssociationSet Name="FK__CTHoaDon__MaHD__300424B4" Association="Self.FK__CTHoaDon__MaHD__300424B4">
+            <End Role="HoaDon" EntitySet="HoaDon" />
+            <End Role="CTHoaDon" EntitySet="CTHoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HoaDon__MaUser__2E1BDC42" Association="Self.FK__HoaDon__MaUser__2E1BDC42">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="HoaDon" EntitySet="HoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ThuCung__MaLoai__286302EC" Association="Self.FK__ThuCung__MaLoai__286302EC">
+            <End Role="LoaiThuCung" EntitySet="LoaiThuCung" />
+            <End Role="ThuCung" EntitySet="ThuCung" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ThuCung__MaCC__29572725" Association="Self.FK__ThuCung__MaCC__29572725">
+            <End Role="NHACC" EntitySet="NHACC" />
+            <End Role="ThuCung" EntitySet="ThuCung" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CTHoaDon__MaTC__30F848ED" Association="Self.FK__CTHoaDon__MaTC__30F848ED">
+            <End Role="ThuCung" EntitySet="ThuCung" />
+            <End Role="CTHoaDon" EntitySet="CTHoaDon" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLBHTCModelStoreContainer" CdmEntityContainer="QLBHTCEntities">
+          <EntitySetMapping Name="HoaDon">
+            <EntityTypeMapping TypeName="QLBHTCModel.HoaDon">
+              <MappingFragment StoreEntitySet="HoaDon">
+                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+                <ScalarProperty Name="MaUser" ColumnName="MaUser" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="TenNguoiShip" ColumnName="TenNguoiShip" />
+                <ScalarProperty Name="DiaChiShip" ColumnName="DiaChiShip" />
+                <ScalarProperty Name="SDTShip" ColumnName="SDTShip" />
+                <ScalarProperty Name="EmailShip" ColumnName="EmailShip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiThuCung">
+            <EntityTypeMapping TypeName="QLBHTCModel.LoaiThuCung">
+              <MappingFragment StoreEntitySet="LoaiThuCung">
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+                <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaGiamGia">
+            <EntityTypeMapping TypeName="QLBHTCModel.MaGiamGia">
+              <MappingFragment StoreEntitySet="MaGiamGia">
+                <ScalarProperty Name="MaCode" ColumnName="MaCode" />
+                <ScalarProperty Name="GiaTriMa" ColumnName="GiaTriMa" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="GiamGia" ColumnName="GiamGia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHACC">
+            <EntityTypeMapping TypeName="QLBHTCModel.NHACC">
+              <MappingFragment StoreEntitySet="NHACC">
+                <ScalarProperty Name="MaCC" ColumnName="MaCC" />
+                <ScalarProperty Name="TenCC" ColumnName="TenCC" />
+                <ScalarProperty Name="DiaChiCC" ColumnName="DiaChiCC" />
+                <ScalarProperty Name="EmailCC" ColumnName="EmailCC" />
+                <ScalarProperty Name="SDTCC" ColumnName="SDTCC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THAMSO">
+            <EntityTypeMapping TypeName="QLBHTCModel.THAMSO">
+              <MappingFragment StoreEntitySet="THAMSO">
+                <ScalarProperty Name="MaTS" ColumnName="MaTS" />
+                <ScalarProperty Name="TenTS" ColumnName="TenTS" />
+                <ScalarProperty Name="DonViTinh" ColumnName="DonViTinh" />
+                <ScalarProperty Name="GiaTri" ColumnName="GiaTri" />
+                <ScalarProperty Name="TinhTong" ColumnName="TinhTong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThuCung">
+            <EntityTypeMapping TypeName="QLBHTCModel.ThuCung">
+              <MappingFragment StoreEntitySet="ThuCung">
+                <ScalarProperty Name="MaTC" ColumnName="MaTC" />
+                <ScalarProperty Name="TenTC" ColumnName="TenTC" />
+                <ScalarProperty Name="GiaTC" ColumnName="GiaTC" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="GT" ColumnName="GT" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="HinhAnhMH" ColumnName="HinhAnhMH" />
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+                <ScalarProperty Name="MaCC" ColumnName="MaCC" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="QLBHTCModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="MaUser" ColumnName="MaUser" />
+                <ScalarProperty Name="HoUser" ColumnName="HoUser" />
+                <ScalarProperty Name="TenUser" ColumnName="TenUser" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="admin" ColumnName="admin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CTHoaDon">
+            <EntityTypeMapping TypeName="QLBHTCModel.CTHoaDon">
+              <MappingFragment StoreEntitySet="CTHoaDon">
+                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+                <ScalarProperty Name="MaTC" ColumnName="MaTC" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

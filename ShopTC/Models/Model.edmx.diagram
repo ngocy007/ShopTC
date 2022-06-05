@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="15a51110e2224beeaf68efc315ffbdad" Name="Diagram1">
+        <EntityTypeShape EntityType="QLBHTCModel.HoaDon" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBHTCModel.LoaiThuCung" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBHTCModel.MaGiamGia" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBHTCModel.NHACC" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBHTCModel.THAMSO" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBHTCModel.ThuCung" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBHTCModel.Users" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBHTCModel.CTHoaDon" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="QLBHTCModel.FK__CTHoaDon__MaHD__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBHTCModel.FK__HoaDon__MaUser__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBHTCModel.FK__ThuCung__MaLoai__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBHTCModel.FK__ThuCung__MaCC__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBHTCModel.FK__CTHoaDon__MaTC__30F848ED" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
