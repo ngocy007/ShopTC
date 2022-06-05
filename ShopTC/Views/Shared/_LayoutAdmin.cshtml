@@ -37,9 +37,13 @@
                 {
                     @Html.ActionLink("ĐĂNG NHẬP", "../DangNhap/DangNhap", new { @class = "a" })
                 }
+                else
+                {
+                    @Html.ActionLink("Thú Cưng Admin", "../ThuCungs/Index", new { @class = "a" })
+                }
             }
             &nbsp;|&nbsp;
-            @Html.ActionLink("Thú Cưng", "../ThuCungs/Index", new { @class = "a" })&nbsp;|&nbsp;
+            @Html.ActionLink("Thú Cưng", "../ThuCungs/Index2", new { @class = "a" })&nbsp;|&nbsp;
             @Html.ActionLink("Thống kê", "../ThongKe/Index", new { @class = "a" })
             <p align="center" style="margin-left:-59px;">  @ViewBag.NguoiDung</p>
             <hr style="display: block;border-top: 1px solid aqua;  margin: 8px 0;" />

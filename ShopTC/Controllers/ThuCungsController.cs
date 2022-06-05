@@ -33,7 +33,8 @@ namespace ShopTC.Controllers
 
         public ActionResult Index2()
         {
-            return View();
+
+            return View(db.ThuCung.ToList());
         }
 
         // GET: ThuCungs/Details/5
