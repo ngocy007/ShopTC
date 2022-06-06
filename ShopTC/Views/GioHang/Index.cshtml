@@ -1,85 +1,131 @@
 ﻿@model IEnumerable<ShopTC.Controllers.Cart>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Thanh Toán";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     int sum = 0;
     long tongTien = 0;
 }
 
 <style>
-
+    button a {
+        color: white;
+    }
+    button {
+        height: 30px;
+        background-color: #1E90FF;
+        border-color: #1E90FF;
+        border-radius: 3px;
+        color: white;
+        margin-bottom: 10px;
+    }
+    input{
+        height: 30px;
+    }
+    table{
+        margin: 0 auto;
+        width: 700px;
+    }
+    h1 {
+        color: #1E90FF;
+        font-family: Coiny;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 33px;
+        text-transform: uppercase
+    }
+    h3 {
+        color: #333333; font-family: Open Sans; font-size: 24px; font-weight: 500; line-height: 26.4px; margin: 20px 0px 10px
+    }
+    label{
+        width:100px;
+        margin-bottom: 10px;
+        font-size: 15px;
+    }
+    .container{
+        width: 750px;
+    }
     td {
         width: 100px;
     }
 </style>
 
-@using (Html.BeginForm("Pay", "GioHang", FormMethod.Get))
-{
-    <label>ten </label>
-    <input type="text" name="name" value="@ViewBag.name" />
-    <br />
-    <label>dia chi </label>
-    <input type="text" name="address" value="@ViewBag.address" />
-    <br />
-    <label>so dien thoai </label>
-    <input type="text" name="phone" value="@ViewBag.phone" />
-    <br />
-    <label>email  </label>
-    <input type="email" name="mail" value="@ViewBag.email" />
-    <br />
-    <label>ma giam gia </label>
-    <input type="email" name="sale" value="" />
-
-
-
-
-
-@Html.ActionLink("Xóa Tất cả", "RemoveAll", "GioHang")
-<table border="1">
-    <tr>
-        <td>Tên</td>
-        <td>Giá</td>
-        <td>Hinh</td>
-        <td>Số Lượng</td>
-        <td>Thanh tien</td>
-        <td> Chức Năng </td>
-    </tr>
-    @foreach (var item in Model)
+<div class="container">
+    <h1>@ViewBag.Title</h1>
+    <h3>Thông tin thanh toán</h3>
+    @using (Html.BeginForm("Pay", "GioHang", FormMethod.Get))
     {
-        <tr>
-            <td>
-                @item.name
-            </td>
-            <td>
-                @item.price
-            </td>
-            <td>
-                @item.photo
-            </td>
-            <td>
-                @Html.ActionLink("-", "addQuantity", new { id = item.id, a = "-" })
-                @item.quantity
-                @Html.ActionLink("+", "addQuantity", new { id = item.id, a = "+" })
-            </td>
-            <td>
-                @{ sum = item.price * item.quantity; tongTien += sum;}
-                @sum
-            </td>
-            <td>
-                @Html.ActionLink("X", "removeEach", new { id = item.id })
+    <div class="info">
+        <label>Họ và tên</label>
+        <input type="text" name="name" value="@ViewBag.name" />
+        <br />
+        <div style="width: 50px">
+            <label>Địa chỉ </label>
+            <textarea type="text" name="address" cols="40" value="@ViewBag.address"></textarea>
+        </div>
+        <br />
+        <label>Số điện thoại </label>
+        <input type="text" name="phone" value="@ViewBag.phone" />
+        <br />
+        <label>Địa chỉ Email  </label>
+        <input type="email" name="mail" value="@ViewBag.email" />
+        <br />
+        <label>Mã giảm giá </label>
+        <input type="email" name="sale" value="" />
+    </div>
 
-            </td>
 
-        </tr>
+
+
+    <button style="float: right">
+        @Html.ActionLink("Xóa tất cả", "RemoveAll", "GioHang")
+    </button>
+
+        <table border="1">
+            <tr>
+                <td>Tên sản phẩm</td>
+                <td>Đơn giá</td>
+                <td>Ảnh</td>
+                <td>Số Lượng</td>
+                <td>Thành tiền</td>
+                <td> Chức Năng </td>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.name
+                    </td>
+                    <td>
+                        @item.price
+                    </td>
+                    <td>
+                        @item.photo
+                    </td>
+                    <td>
+                        @Html.ActionLink("-", "addQuantity", new { id = item.id, a = "-" })
+                        @item.quantity
+                        @Html.ActionLink("+", "addQuantity", new { id = item.id, a = "+" })
+                    </td>
+                    <td>
+                        @{ sum = item.price * item.quantity; tongTien += sum;}
+                        @sum
+                    </td>
+                    <td>
+                        @Html.ActionLink("X", "removeEach", new { id = item.id })
+
+                    </td>
+
+                </tr>
+
+            }
+
+        </table>
+
+
+        <h2>Tổng tiền : @tongTien </h2>
+
+        <button type="submit">Thanh toán</button>
 
     }
-
-</table>
-
-
-<h2>Tong tien : @tongTien </h2>
-
-<button type="submit"> Thanh Toan</button>
-
-}
+</div>
