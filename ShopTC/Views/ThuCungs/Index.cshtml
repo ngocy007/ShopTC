@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     var grid = new WebGrid(Model, canPage: true, defaultSort: "TenTC", rowsPerPage: 10);
 }
-
 <h2>@ViewBag.Title</h2>
 <button class="btn-single">
     <i class="fa fa-plus-circle"></i>
@@ -24,7 +23,7 @@
         grid.Column("STT",format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex, canSort: true, style: "STT"),
         grid.Column("MaTC","Mã thú cưng"), //the model fields to display
         grid.Column("TenTC","Tên thú cưng"),
-        grid.Column("LoaiThuCung.Loai","Loại"),
+        grid.Column("LoaiThuCung.TenLoai","Loại"),
         grid.Column("GT","Giới tính"),
         grid.Column("SoLuong","Số lượng"),
         grid.Column("GiaTC","Đơn giá"),

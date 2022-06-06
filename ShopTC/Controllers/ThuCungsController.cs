@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ShopTC.Models;
+using System.Linq;
 
 namespace ShopTC.Controllers
 {
@@ -23,7 +24,7 @@ namespace ShopTC.Controllers
 
 
         // GET: ThuCungs
-        public ActionResult Index()
+        public ActionResult Index(String Ten = "")
         {
             if (Session["ID"] == null || Session["ID"].ToString() == "")
             {
@@ -34,13 +35,20 @@ namespace ShopTC.Controllers
                 var thuCungs = db.ThuCung.Include(t => t.LoaiThuCung);
                 ViewBag.MaLoai = new SelectList(db.LoaiThuCung, "MaLoai", "TenLoai");
                 return View(thuCungs.ToList());
-
+                
             }
         }
-
+        [HttpGet]
+        public ActionResult TimKiem(string Ten)
+        {
+            ViewBag.Ten = Ten;
+            var TC = db.ThuCung.Where(t => t.TenTC == Ten);
+            if (TC.Count() == 0)
+                ViewBag.TB = "Không có thông tin tìm kiếm.";
+            return View(TC.ToList());
+        }
         public ActionResult Index2()
         {
-
             return View(db.ThuCung.ToList());
         }
 
@@ -58,7 +66,7 @@ namespace ShopTC.Controllers
             }
             return View(thuCung);
         }
-
+        
         // GET: ThuCungs/Create
         public ActionResult Create()
         {
