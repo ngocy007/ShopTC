@@ -4,15 +4,76 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-
-<div style="width: 100%; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap:10px; padding : 10px;">
-    @foreach (var item in Model)
-    {
-        <div style=" background-color: rgba(51, 170, 51, .1); ">
-            <img src="@item.HinhAnhMH" alt="Alternate Text" />
-            <h3>@item.TenTC</h3>
-            <p>@item.GiaTC</p>
-            @Html.ActionLink("Thêm Giỏ Hàng", "AddToCart", "GioHang", new { id = item.MaTC }, null)
-        </div>
+<style>
+    .container{
+        padding: 0 0 10px 0;
     }
+    .row {
+        display: flex;
+        justify-content: space-between;
+        width: 1200px;
+    }
+
+    .buy:hover {
+        color: white;
+        background-color: #1E90FF;
+    }
+
+    .buy {
+        margin-left: 50%;
+        transform: translate(-50%);
+        width: 168px;
+    }
+
+    p {
+        color: #222222;
+        font-family: Helvetica;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 22px;
+        margin: 6px 0px 0px;
+    }
+
+    .wrap-item {
+        height: 100px;
+        line-height: 18px;
+        padding: 8px;
+    }
+
+    h3 {
+        font-size: 14px;
+        font-family: Helvetica;
+        line-height: 22px;
+    }
+
+    .card {
+        border: 1px solid grey;
+        border-radius: 5px;
+        margin-top: 20px;
+        width: 192px;
+        height: 400px;
+    }
+
+        .card:hover {
+            box-shadow: #ed1164 0px 1px 12px 0px;
+        }
+
+    img {
+        width: 189px;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model.Take(12))
+        {
+        <div class="card">
+            <img src="https://matpetfamily.com/wp-content/uploads/2021/12/2ACA83B3-6A7D-47BE-A22C-015FC353498B-600x801.jpeg" alt="Alternate Text" />
+            <div class="wrap-item">
+                <h3>@item.TenTC</h3>
+                <p>@item.GiaTC</p>
+            </div>
+            <button onclick="location.href='@Url.Action("AddToCart", "GioHang",new { id = item.MaTC }, null)'" type="button" class="btn buy">Mua</button>
+        </div>
+        }
+    </div>
 </div>

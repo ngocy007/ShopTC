@@ -47,8 +47,8 @@
             @Html.ActionLink("Thú Cưng", "../ThuCungs/Index2", new { @class = "a" })&nbsp;|&nbsp;
             @Html.ActionLink("Thống kê", "../ThongKe/Index", new { @class = "a" })  &nbsp;|&nbsp;
             @Html.ActionLink("Giỏ Hàng", "../GioHang/Index") &nbsp;|&nbsp;
-            <div style="display: inline-block">
-                <a class="text-info">@ViewBag.NguoiDung</a>
+            <div style="display: inline; margin-left: 50%">
+                <a style="pointer-events: none" class="text-info">@ViewBag.NguoiDung</a>
                 @{
                     if (!String.IsNullOrEmpty(id))
                     {
