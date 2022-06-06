@@ -24,7 +24,7 @@
         grid.Column("MaTC","Mã thú cưng"), //the model fields to display
         grid.Column("TenTC","Tên thú cưng"),
         grid.Column("LoaiThuCung.TenLoai","Loại"),
-        grid.Column("GT","Giới tính"),
+        grid.Column("GT","Giới tính",format: (@item) => @item.GT==true?"Đực":"Cái"),
         grid.Column("SoLuong","Số lượng"),
         grid.Column("GiaTC","Đơn giá"),
         grid.Column("Chức năng", format: @<text>

@@ -51,23 +51,19 @@
         border-radius: 5px;
         margin-top: 20px;
         width: 192px;
-        height: 400px;
+        height: 350px;
     }
 
         .card:hover {
             box-shadow: #ed1164 0px 1px 12px 0px;
         }
-
-    img {
-        width: 189px;
-    }
 </style>
 <div class="container">
     <div class="row">
         @foreach (var item in Model.Take(12))
         {
         <div class="card">
-            <img src="https://matpetfamily.com/wp-content/uploads/2021/12/2ACA83B3-6A7D-47BE-A22C-015FC353498B-600x801.jpeg" alt="Alternate Text" />
+            <img style="object-fit:cover" src="~/Images/@item.HinhAnhMH" alt="Error" width="189" height="190"/>
             <div class="wrap-item">
                 <h3>@item.TenTC</h3>
                 <p>@item.GiaTC</p>

@@ -1,35 +1,52 @@
 ﻿@model IEnumerable<ShopTC.Models.HoaDon>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Thống kê";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var grid = new WebGrid(Model, canPage: true, defaultSort: "TenTC", rowsPerPage: 10);
 }
 
-@using (Html.BeginForm("Index", "ThongKe", FormMethod.Post))
-{
-    <label>Ngay bat dau</label>
-    <input type="date" name="nameStart" value="" />
-
-    <label>Ngay ket thuc</label>
-    <input type="date" name="nameEnd" value="" />
-    <br/>
-    <button type="submit"> Thong ke</button>
-
-
-}
-<table>
-    <tr>
-        <td>ma Hoa don</td>
-        <td>ngay tao</td>
-        <td>Tong tien</td>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td> @item.MaHD </td>
-            <td> @item.NgayTao </td>
-            <td> @item.TongTien </td>
-        </tr>
+<style>
+    table {
+        margin: 0 auto;
+        width: 700px;
     }
-</table>
+    td {
+        text-align: center;
+        height: 30px;
+        width: 100px;
+    }
+</style>
+<div class="container">
+    <h3 style="text-align: center; font-weight: bold; color: #1E90FF">@ViewBag.Title</h3>
+    @using (Html.BeginForm("Index", "ThongKe", FormMethod.Post))
+    {
+        <label>Ngày bắt đầu</label>
+        <input type="date" name="nameStart" value="" />
+
+        <label style="margin-left: 50px">Ngày kết thúc</label>
+        <input type="date" name="nameEnd" value="" />
+        <br />
+        <select style="margin:10px 0 10px 0; font-size: 15px"><option>Thú cưng bán nhiều nhất</option></select>
+        <button type="submit"> Thống kê</button>
+
+
+    }
+    <div id="gridContent">
+        @ViewBag.TB
+        @grid.GetHtml(
+            tableStyle: "table table-bordered table-hover",
+            footerStyle: "grid-footer",
+            fillEmptyRows: true,
+            mode: WebGridPagerModes.Numeric,
+            alternatingRowStyle: "alternatingRowStyle",
+              columns: new[]  // colums in grid
+             {
+            grid.Column("STT",format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex, canSort: true, style: "STT"),
+            grid.Column("MaHD","Mã hóa đơn"), //the model fields to display
+            grid.Column("NgayTao","Ngày tạo"),
+            grid.Column("TongTien","Tổng tiên"),
+}
+)
+    </div>
+</div>

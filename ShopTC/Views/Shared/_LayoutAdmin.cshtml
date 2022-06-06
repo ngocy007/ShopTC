@@ -30,7 +30,7 @@
 </head>
 <body style="margin-top:0px;">
     <div id="banner" style="top:0px;position:absolute;">HỆ THỐNG QUẢN LÝ THÚ CƯNG</div>
-    <div id="menu" style="margin-top:15px;">
+    <div id="menu" style="margin-top:20px;">
         <div>
             @Html.ActionLink("GIỚI THIỆU", "../GioiThieu/GioiThieu", new { @class = "a" }) &nbsp;|&nbsp;
             @{
@@ -47,7 +47,7 @@
             @Html.ActionLink("Thú Cưng", "../ThuCungs/Index2", new { @class = "a" })&nbsp;|&nbsp;
             @Html.ActionLink("Thống kê", "../ThongKe/Index", new { @class = "a" })  &nbsp;|&nbsp;
             @Html.ActionLink("Giỏ Hàng", "../GioHang/Index") &nbsp;|&nbsp;
-            <div style="display: inline; margin-left: 50%">
+            <div style="display: inline-block; position: absolute; right: 0; margin-top:-8px" >
                 <a style="pointer-events: none" class="text-info">@ViewBag.NguoiDung</a>
                 @{
                     if (!String.IsNullOrEmpty(id))
