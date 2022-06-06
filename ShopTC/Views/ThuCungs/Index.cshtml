@@ -6,12 +6,34 @@
     var grid = new WebGrid(Model, canPage: true, defaultSort: "TenTC", rowsPerPage: 10);
 }
 <h2>@ViewBag.Title</h2>
+
 <button class="btn-single">
     <i class="fa fa-plus-circle"></i>
     @Html.ActionLink("Thêm", "Create")
 </button>
+<div>
+    @using (Html.BeginForm("TimKiem", "ThuCungs", FormMethod.Get))
+    {
+        @Html.AntiForgeryToken()
+        <table class="table1" align="center">
+            <tr class="pb-1">
+                <td class="control-label">Tên thú cưng </td>
+                <td>
+                    <input class="form-control" type="text" name="Ten" value="@ViewBag.Ten" />
+                </td>
+            <tr>
+                <td></td>
+                <td>
+                    <button class="btn btn-default" type="submit" name="submit" value="Tìm kiếm">Tìm kiếm</button>
+                    <button class="btn btn-default" type="button" name="Nhapmoi" value="Nhập mới" onclick="location.href='@Url.Action("Index", "ThuCungs")'">Nhập mới</button>
+
+                </td>
+            </tr>
+        </table>
+        @ViewBag.TB
+    }
+</div>
 <div id="gridContent">
-    @ViewBag.TB
     @grid.GetHtml(
         tableStyle: "table table-bordered table-hover",
         footerStyle: "grid-footer",

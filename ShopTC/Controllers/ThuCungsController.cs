@@ -42,7 +42,9 @@ namespace ShopTC.Controllers
         public ActionResult TimKiem(string Ten)
         {
             ViewBag.Ten = Ten;
-            var TC = db.ThuCung.Where(t => t.TenTC == Ten);
+            var TC = from t in db.ThuCung
+                     where t.TenTC.Contains(Ten)
+                     select t;
             if (TC.Count() == 0)
                 ViewBag.TB = "Không có thông tin tìm kiếm.";
             return View(TC.ToList());
