@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ShopTC.Models.HoaDon>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("Index", "ThongKe", FormMethod.Post))
+{
+    <label>Ngay bat dau</label>
+    <input type="date" name="nameStart" value="" />
+
+    <label>Ngay ket thuc</label>
+    <input type="date" name="nameEnd" value="" />
+    <br/>
+    <button type="submit"> Thong ke</button>
+
+
+}
+<table>
+    <tr>
+        <td>ma Hoa don</td>
+        <td>ngay tao</td>
+        <td>Tong tien</td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @item.MaHD </td>
+            <td> @item.NgayTao </td>
+            <td> @item.TongTien </td>
+        </tr>
+    }
+</table>
