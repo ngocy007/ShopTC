@@ -64,41 +64,42 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenTC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GiaTC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoLuong)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GT)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MoTa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HinhAnhMH)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgaySinh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LoaiThuCung.TenLoai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NHACC.TenCC)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaTC }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaTC }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaTC })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenTC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiaTC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoTa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HinhAnhMH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgaySinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoaiThuCung.TenLoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NHACC.TenCC)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MaTC }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MaTC }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.MaTC })
+            </td>
+        </tr>
+    }
 
 </table>
