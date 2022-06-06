@@ -33,5 +33,6 @@ namespace ShopTC.Models
         public virtual DbSet<ThuCung> ThuCung { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<CTHoaDon> CTHoaDon { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

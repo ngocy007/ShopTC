@@ -4,15 +4,15 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+
 <div style="width: 100%; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap:10px; padding : 10px;">
     @foreach (var item in Model)
     {
-
         <div style=" background-color: rgba(51, 170, 51, .1); ">
             <img src="@item.HinhAnhMH" alt="Alternate Text" />
             <h3>@item.TenTC</h3>
             <p>@item.GiaTC</p>
-             @Html.ActionLink("Thêm Giỏ Hàng", "AddToCart", "GioHang", new { id = item.MaTC })
+            @Html.ActionLink("Thêm Giỏ Hàng", "AddToCart", "GioHang", new { id = item.MaTC }, null)
         </div>
     }
 </div>

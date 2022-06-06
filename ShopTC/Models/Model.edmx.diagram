@@ -18,6 +18,7 @@
         <AssociationConnector Association="QLBHTCModel.FK__ThuCung__MaLoai__286302EC" ManuallyRouted="false" />
         <AssociationConnector Association="QLBHTCModel.FK__ThuCung__MaCC__29572725" ManuallyRouted="false" />
         <AssociationConnector Association="QLBHTCModel.FK__CTHoaDon__MaTC__30F848ED" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QLBHTCModel.sysdiagrams" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

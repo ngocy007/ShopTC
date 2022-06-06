@@ -13,6 +13,14 @@ namespace ShopTC.Controllers
     public class ThuCungsController : Controller
     {
         private QLBHTCEntities db = new QLBHTCEntities();
+        string LayMaTC()
+        {
+            var maMax = db.ThuCung.ToList().Select(n => n.MaTC).Max();
+            int maTC = int.Parse(maMax.Substring(2)) + 1;
+            string NV = String.Concat("000", maTC.ToString());
+            return "TC" + NV.Substring(maTC.ToString().Length - 1);
+        }
+
 
         // GET: ThuCungs
         public ActionResult Index()
@@ -20,7 +28,6 @@ namespace ShopTC.Controllers
             if (Session["ID"] == null || Session["ID"].ToString() == "")
             {
                 return RedirectToAction("Index2", "ThuCungs");
-
             }
             else
             {
@@ -55,6 +62,7 @@ namespace ShopTC.Controllers
         // GET: ThuCungs/Create
         public ActionResult Create()
         {
+            ViewBag.MaTC = LayMaTC();
             ViewBag.MaLoai = new SelectList(db.LoaiThuCung, "MaLoai", "TenLoai");
             ViewBag.MaCC = new SelectList(db.NHACC, "MaCC", "TenCC");
             return View();
@@ -67,8 +75,17 @@ namespace ShopTC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MaTC,TenTC,GiaTC,SoLuong,GT,MoTa,HinhAnhMH,MaLoai,MaCC,NgaySinh")] ThuCung thuCung)
         {
+            //System.Web.HttpPostedFileBase Avatar;
+            var imgTC = Request.Files["Avatar"];
+            //Lấy thông tin từ input type=file có tên Avatar
+            string postedFileName = System.IO.Path.GetFileName(imgTC.FileName);
+            //Lưu hình đại diện về Server
+            var path = Server.MapPath("/Images/" + postedFileName);
+            imgTC.SaveAs(path);
             if (ModelState.IsValid)
             {
+                thuCung.MaTC = LayMaTC();
+                thuCung.HinhAnhMH = postedFileName;
                 db.ThuCung.Add(thuCung);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -103,6 +120,17 @@ namespace ShopTC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MaTC,TenTC,GiaTC,SoLuong,GT,MoTa,HinhAnhMH,MaLoai,MaCC,NgaySinh")] ThuCung thuCung)
         {
+            var imgTC = Request.Files["Avatar"];
+            try
+            {
+                //Lấy thông tin từ input type=file có tên Avatar
+                string postedFileName = System.IO.Path.GetFileName(imgTC.FileName);
+                //Lưu hình đại diện về Server
+                var path = Server.MapPath("/Images/" + postedFileName);
+                imgTC.SaveAs(path);
+            }
+            catch
+            { }
             if (ModelState.IsValid)
             {
                 db.Entry(thuCung).State = EntityState.Modified;
@@ -137,7 +165,7 @@ namespace ShopTC.Controllers
             ThuCung thuCung = db.ThuCung.Find(id);
             db.ThuCung.Remove(thuCung);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index"); ;
         }
 
         protected override void Dispose(bool disposing)
